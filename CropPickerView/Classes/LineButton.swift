@@ -107,18 +107,6 @@ enum ButtonLineType {
         }
     }
     
-    func view(_ color: UIColor?) -> UIView? {
-        var view: UIView?
-        if self == .leftTop || self == .rightTop || self == .leftBottom || self == .rightBottom {
-            view = ButtonLineType.EdgeView(self, color: color)
-        } else {
-            view = ButtonLineType.SideView(self, color: color)
-        }
-        view?.isOpaque = false
-        view?.tintColor = color
-        return view
-    }
-    
     class LineView: UIView {
         var type: ButtonLineType
         var color: UIColor?
@@ -164,5 +152,22 @@ enum ButtonLineType {
                 .line(15, 6)
             apply(path)
         }
+    }
+}
+
+
+@MainActor
+extension ButtonLineType {
+    func view(_ color: UIColor?) -> UIView {
+        let view: UIView
+        switch self {
+        case .leftTop, .rightTop, .leftBottom, .rightBottom:
+            view = ButtonLineType.EdgeView(self, color: color)
+        default:
+            view = ButtonLineType.SideView(self, color: color)
+        }
+        view.isOpaque = false
+        view.tintColor = color
+        return view
     }
 }
