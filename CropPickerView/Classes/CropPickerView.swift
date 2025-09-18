@@ -536,6 +536,7 @@ extension CropPickerView {
     }
     
     // Init
+    @MainActor
     private func setupViews() {
         if isSetup { return }
         isSetup = true

@@ -144,6 +144,7 @@ public class CropView: UIView {
         super.init(coder: aDecoder)
     }
     
+    @MainActor
     private func initVars() {
         
         addSubview(topLineView)

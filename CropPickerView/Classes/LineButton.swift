@@ -21,6 +21,7 @@
 import UIKit
 
 // Called when the button's highlighted is false.
+@MainActor
 protocol LineButtonDelegate: AnyObject {
     func lineButtonUnHighlighted()
 }
@@ -58,7 +59,7 @@ public class LineButton: UIButton {
     }
     
     public func edgeLine(_ color: UIColor?) {
-        setImage(type.view(color)?.imageWithView?.withRenderingMode(.alwaysOriginal), for: .normal)
+        setImage(type.view(color).imageWithView?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
 }
 

@@ -72,6 +72,7 @@ extension UIImage {
         return UIImage(cgImage: makeImage)
     }
 
+    @MainActor
     func crop(_ rect: CGRect, isTransparent: Bool, radius: CGFloat, radiusScale: CGFloat, scale: CGFloat = 1) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(CGSize(width: rect.size.width / scale, height: rect.size.height / scale), !isTransparent, 0.0)
         draw(at: CGPoint(x: -rect.origin.x / scale, y: -rect.origin.y / scale))
