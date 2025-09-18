@@ -17,7 +17,5 @@ let package = Package(
             sources: ["Classes"]
             // если появятся ресурсы: resources: [.process("Assets")]
         )
-        // тесты можно добавить позже, сейчас не обязательно
-        // .testTarget(name: "CropPickerViewTests", path: "Tests")
     ]
 )
