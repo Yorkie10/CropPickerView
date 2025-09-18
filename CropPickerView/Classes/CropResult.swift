@@ -19,6 +19,7 @@
 //THE SOFTWARE.
 
 import Foundation
+import UIKit
 
 public struct CropResult {
     public var error: Error?
