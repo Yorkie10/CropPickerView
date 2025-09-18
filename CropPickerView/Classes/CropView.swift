@@ -21,7 +21,6 @@
 import UIKit
 
 // Crop LineView
-@MainActor
 public class CropView: UIView {
     private let margin: CGFloat = 0
     private let lineSize: CGFloat = 1
@@ -123,11 +122,15 @@ public class CropView: UIView {
         return view
     }()
     
-    @MainActor
+
     public override func awakeFromNib() {
         super.awakeFromNib()
         
-        initVars()
+        if #available(iOS 13.0, *) {
+            Task { @MainActor in self.initVars() }
+        } else {
+            DispatchQueue.main.async { self.initVars() }
+        }
     }
     
     init() {
