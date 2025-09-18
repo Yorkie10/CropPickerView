@@ -21,6 +21,7 @@
 import UIKit
 
 // Crop LineView
+@MainActor
 public class CropView: UIView {
     private let margin: CGFloat = 0
     private let lineSize: CGFloat = 1
