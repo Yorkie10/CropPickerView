@@ -19,6 +19,8 @@
 //THE SOFTWARE.
 
 import UIKit
+import QuartzCore
+@preconcurrency import QuartzCore
 
 // CropDimView
 public class CropDimView: UIView {
@@ -62,12 +64,15 @@ public class CropDimView: UIView {
 }
 
 // MARK: CAAnimationDelegate
+
 extension CropDimView: CAAnimationDelegate {
-    public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        guard let path = path else { return }
-        if let mask = layer.mask as? CAShapeLayer {
-            mask.removeAllAnimations()
-            mask.path = path
+    nonisolated public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self, let path = self.path else { return }
+            if let mask = self.layer.mask as? CAShapeLayer {
+                mask.removeAllAnimations()
+                mask.path = path
+            }
         }
     }
 }
