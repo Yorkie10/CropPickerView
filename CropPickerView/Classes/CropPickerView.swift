@@ -283,14 +283,21 @@ public class CropPickerView: UIView {
     
     public override func awakeFromNib() {
         super.awakeFromNib()
-        
-        setupViews()
+        if #available(iOS 13.0, *) {
+            Task { @MainActor in self.setupViews() }
+        } else {
+            DispatchQueue.main.async { self.setupViews() }
+        }
     }
     
     public override init(frame: CGRect = .zero) {
         super.init(frame: frame)
         
-        setupViews()
+        if #available(iOS 13.0, *) {
+            Task { @MainActor in self.setupViews() }
+        } else {
+            DispatchQueue.main.async { self.setupViews() }
+        }
     }
     
     public required init?(coder aDecoder: NSCoder) {

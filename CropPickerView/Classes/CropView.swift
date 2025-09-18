@@ -136,13 +136,21 @@ public class CropView: UIView {
     init() {
         super.init(frame: .zero)
         
-        initVars()
+        if #available(iOS 13.0, *) {
+            Task { @MainActor in self.initVars() }
+        } else {
+            DispatchQueue.main.async { self.initVars() }
+        }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        initVars()
+        if #available(iOS 13.0, *) {
+            Task { @MainActor in self.initVars() }
+        } else {
+            DispatchQueue.main.async { self.initVars() }
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
