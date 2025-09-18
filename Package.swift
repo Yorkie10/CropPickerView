@@ -1,19 +1,23 @@
-// swift-tools-version: 5.9
+// swift-tools-version: 6.0
 import PackageDescription
 
 let package = Package(
     name: "CropPickerView",
-    platforms: [.iOS(.v14)],
+    platforms: [
+        .iOS(.v13)   // ← важно
+    ],
     products: [
-        .library(name: "CropPickerView", targets: ["CropPickerView"])
+        .library(name: "CropPickerView", targets: ["CropPickerView"]),
     ],
     targets: [
         .target(
             name: "CropPickerView",
+            // структура репо: CropPickerView/Classes/*.swift
             path: "CropPickerView",
             sources: ["Classes"]
-            // ,resources: [.process("Assets")] // оставь только если папка Assets реально есть
+            // если появятся ресурсы: resources: [.process("Assets")]
         )
-    ],
-    swiftLanguageVersions: [.v5]
+        // тесты можно добавить позже, сейчас не обязательно
+        // .testTarget(name: "CropPickerViewTests", path: "Tests")
+    ]
 )
