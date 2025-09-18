@@ -123,6 +123,7 @@ public class CropView: UIView {
         return view
     }()
     
+    @MainActor
     public override func awakeFromNib() {
         super.awakeFromNib()
         
